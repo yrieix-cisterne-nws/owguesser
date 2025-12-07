@@ -10,9 +10,9 @@ export default function Header() {
             <button className="px-6 py-2 text-white bg-[#43484c]">
                 Hero
             </button>
-            <button className="px-6 py-2 text-white bg-[#43484C]">
+            {/* <button className="px-6 py-2 text-white bg-[#43484C]">
                 Stadium
-            </button>
+            </button> */}
         </div>
         </div>
     </header>
