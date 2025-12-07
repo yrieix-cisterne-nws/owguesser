@@ -1,38 +1,25 @@
 import { useState, useEffect } from "react";
-import HeroImage from "../component/hero";
+import HeroImage from "../component/heroimage";
 import HeroGuess from "../component/heroguess";
+import { HeroRandom } from "../component/herorandom";
+import Difficulty from "../component/difficulty";
 
 
 export default function Home() {
     const [currentHero, setCurrentHero] = useState(null);
     const [currentStreak, setCurrentStreak] = useState(0);
     const [bestStreak, setBestStreak] = useState(0);
+    const [difficulty, setDifficulty] = useState("easy");
+
 
     useEffect(() => {
-            const hero = async () => {
-                try {
-                    const herolist = await fetch('https://overfast-api.tekrop.fr/heroes')
-                    const herojson = await herolist.json();
-                    
-                    const randomhero = herojson[Math.floor(Math.random() * herojson.length)];
-                    const herodetail = await fetch(`https://overfast-api.tekrop.fr/heroes/${randomhero.key}`);
-                    const herodetailjson = await herodetail.json();
-
-                    setCurrentHero({
-                        name: herodetailjson.name,
-                        image: herodetailjson.portrait
-                    })
-                } catch (error) {
-                    console.error('Erreur:', error);
-                }
-            };
-        hero();
+        HeroRandom(setCurrentHero);
     }, []);
 
     const handleGuess = (guess) => {
         if (guess.toLowerCase() === currentHero.name.toLowerCase()) {
             setCurrentStreak(currentStreak + 1);
-            alert("Correct!");
+            HeroRandom(setCurrentHero);
         } else {
             alert(`Wrong! The correct answer was ${currentHero.name}`);
             if (currentStreak > bestStreak) {
@@ -50,17 +37,10 @@ export default function Home() {
                 <h1 className="text-4xl">OWGuesser</h1>
             </div>
             <div className="flex justify-center items-center">
-                <div>
-                    <h2 className="">Difficulty</h2>
-                    <div className="flex flex-col">
-                        <button className="text-[14.4px]">Easy</button>
-                        <button className="text-[14.4px]">Normal</button>
-                        <button className="text-[14.4px]">Hard</button>
-                    </div>
-                </div>
+                <Difficulty difficulty={difficulty} setDifficulty={setDifficulty}/>
                 <div className="flex flex-col pt-4 pl-2 pr-2">
                     <div className="bg-[#f99e1a] p-8">
-                        <HeroImage hero={currentHero} />
+                        <HeroImage hero={currentHero} difficulty={difficulty} />
                     </div>
                     <HeroGuess onSubmit={handleGuess}/>
                 </div>
