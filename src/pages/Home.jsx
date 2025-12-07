@@ -38,7 +38,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center items-center">
                 <Difficulty difficulty={difficulty} setDifficulty={setDifficulty}/>
-                <div className="flex flex-col pt-4 pl-2 pr-2">
+                <div className="flex flex-col pt-4 px-2">
                     <div className="bg-[#f99e1a] p-8">
                         <HeroImage hero={currentHero} difficulty={difficulty} />
                     </div>
@@ -46,13 +46,15 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col items-center justify-center">
                     <h2>Streak</h2>
-                    <div className="flex flex-col items-center">
-                        <h3 className="text-[14.4px]">Current</h3>
-                        <p className="text-3xl">{currentStreak}</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <h3 className="text-[14.4px]">Best</h3>
-                        <p className="text-3xl">{bestStreak}</p>
+                    <div className="bg-[#34495e] text-white p-2 rounded-xl">
+                        <div className="flex flex-col items-center">
+                            <h3 className="text-[14.4px]">Current</h3>
+                            <p className="text-3xl">{currentStreak}</p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <h3 className="text-[14.4px]">Best</h3>
+                            <p className="text-3xl">{bestStreak}</p>
+                        </div>
                     </div>
                 </div>
             </div>
