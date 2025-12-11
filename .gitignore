@@ -25,4 +25,5 @@ dist-ssr
 
 # Docker
 
-docker-compose.overwrite.yml
+docker-compose.override.yml
+docker-compose.local.yml
