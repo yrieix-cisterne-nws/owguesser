@@ -18,6 +18,10 @@ COPY . .
 RUN npm run build
 
 # 2nd image qui est optimisé pour la production
-FROM nginx:alpine
+FROM node:20-alpine
 # Copie des fichiers générés par le builder (dans /app/dist) vers le dossier public de Nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
+RUN npm install -g serve
+COPY --from=builder /app/dist ./build
+
+EXPOSE 3000
+CMD ["serve", "-s", "build", "-l", "3000"]

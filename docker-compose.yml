@@ -9,7 +9,7 @@ services:
       - "traefik.http.routers.owguesser.rule=Host(`owguesser.yrieix-cisterne.fr`)"
       - "traefik.http.routers.owguesser.entrypoints=websecure"
       - "traefik.http.routers.owguesser.tls.certresolver=letsencrypt"
-      - "traefik.http.services.owguesser.loadbalancer.server.port=80"
+      - "traefik.http.services.owguesser.loadbalancer.server.port=3000"
 
     networks:
       - traefik
